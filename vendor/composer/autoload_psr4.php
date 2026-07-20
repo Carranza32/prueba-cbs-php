@@ -6,6 +6,11 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
+    'Mockery\\' => array($vendorDir . '/mockery/mockery/library/Mockery'),
+    'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Carbon_Fields\\' => array($vendorDir . '/htmlburger/carbon-fields/core'),
+    'CBSNorthStar\\Tests\\' => array($baseDir . '/tests/unit'),
     'CBSNorthStar\\' => array($baseDir . '/inc'),
+    'Brain\\Monkey\\' => array($vendorDir . '/brain/monkey/src'),
 );

@@ -71,11 +71,11 @@ fi
 # ── wp-tests-config.php ───────────────────────────────────────────────────────
 if [[ ! -f $WP_TESTS_DIR/wp-tests-config.php ]]; then
     download "https://develop.svn.wordpress.org/${WP_TESTS_TAG}/wp-tests-config-sample.php" "$WP_TESTS_DIR/wp-tests-config.php"
-    sed -i "s|dirname( __FILE__ ) . '/src/'|'${WP_CORE_DIR}/src/'|" "$WP_TESTS_DIR/wp-tests-config.php"
-    sed -i "s|youremptytestdbnamehere|${DB_NAME}|" "$WP_TESTS_DIR/wp-tests-config.php"
-    sed -i "s|yourusernamehere|${DB_USER}|"         "$WP_TESTS_DIR/wp-tests-config.php"
-    sed -i "s|yourpasswordhere|${DB_PASS}|"         "$WP_TESTS_DIR/wp-tests-config.php"
-    sed -i "s|localhost|${DB_HOST}|"                "$WP_TESTS_DIR/wp-tests-config.php"
+    sed -i "" "s|dirname( __FILE__ ) . '/src/'|'${WP_CORE_DIR}/src/'|" "$WP_TESTS_DIR/wp-tests-config.php"
+    sed -i "" "s|youremptytestdbnamehere|${DB_NAME}|" "$WP_TESTS_DIR/wp-tests-config.php"
+    sed -i "" "s|yourusernamehere|${DB_USER}|"         "$WP_TESTS_DIR/wp-tests-config.php"
+    sed -i "" "s|yourpasswordhere|${DB_PASS}|"         "$WP_TESTS_DIR/wp-tests-config.php"
+    sed -i "" "s|localhost|${DB_HOST}|"                "$WP_TESTS_DIR/wp-tests-config.php"
 fi
 
 # ── Create test database ──────────────────────────────────────────────────────
