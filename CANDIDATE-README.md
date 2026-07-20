@@ -1,9 +1,18 @@
+# Senior WordPress / WooCommerce Engineering Exercise
+
+**Company:** CBS NorthStar  
+**Candidate Deliverable:** `CANDIDATE-README.md`
+
+---
+
 ## Task 0 — Environment Setup & Baseline Validation
 
 Successfully configured and validated the local development and testing environment running under PHP 8.4 and macOS.
 
 * **Environment & Bootstrapping Resolution:** Resolved local environment discrepancies during initial setup, specifically addressing BSD/macOS `sed` command syntax incompatibilities in the test automation scripts and configuring the correct MySQL Unix domain socket path for local database connections.
 * **Baseline Verification:** Executed the existing PHPUnit test suite to establish a green baseline prior to refactoring. Verified that all pre-existing unit tests and Brain Monkey WordPress/WooCommerce function stubs executed cleanly without deprecation notices or fatal errors under PHP 8.x.
+
+---
 
 ## Task 1 — `FreeEvery` Pricing Rule Implementation
 
@@ -17,14 +26,15 @@ Implemented the `FreeEvery` promotional rule within `ComponentFreeRules::isInsta
   2. Visual state (rendering "Free" badges on the correct DOM elements).
   3. Array mutation handling (re-evaluating modulo positions correctly when an earlier item is removed from the cart).
 
+---
 
-
-  ## Task 2 — HPOS-Compatible Order Meta & Audit
+## Task 2 — HPOS-Compatible Order Meta & Audit
 
 Introduced the `CBSNorthStar\Helpers\OrderMeta` wrapper class to centralize and manage all read/write operations for internal CBS order metadata (`cbs_orderid`, `cbs_siteid`, `cbs_checknumber`, and `cbs_orderFinalized`). This abstraction enforces schema whitelist validation, supports both `WC_Order` objects and raw numeric order IDs, and leverages the native WooCommerce CRUD API (`$order->get_meta()` and `$order->update_meta_data()`). Legacy direct calls to `update_post_meta()` across `inc/Woapi/OrderProcess.php` and `inc/woocommerce_hooks.php` were successfully refactored to utilize this layer, optimizing database access by deferring persistent writes until all keys are staged in memory. Furthermore, official High-Performance Order Storage (HPOS) compatibility was declared via `FeaturesUtil::declare_compatibility()` within the `before_woocommerce_init` action hook.
 
 * **Production HPOS Readiness Audit:** While working through the refactoring of `OrderProcess.php`, I identified significant remaining legacy dependencies on direct post metadata functions outside the core CBS check IDs. Specifically, the `getDeliveryDate()` method relies heavily on direct `get_post_meta()` calls to retrieve order delivery timestamps (`_orddd_lite_timeslot_timestamp`, `_orddd_timeslot_timestamp`) as well as custom OLO navigation time slots (`_olo_time_slot_time`, `_olo_time_slot_business_date`). Before enabling HPOS on a production store, a codebase-wide audit must be performed to migrate all remaining `get_post_meta()` and `update_post_meta()` references to the WC CRUD API. Additionally, any direct `$wpdb` SQL queries joining `wp_posts` with `wp_postmeta` for order reporting, along with legacy `get_posts()` arguments querying the `shop_order` post type, must be audited and updated to use `wc_get_orders()` or the `wc_orders` custom table schema.
 
+---
 
 ## Task 3 — Transient-Failure Resilience on Order Submit
 
@@ -35,6 +45,7 @@ Implemented an inline bounded retry loop directly within `OrderProcess::submitOr
 * **Double-Submission & Idempotency Analysis:** A network timeout is ambiguous (the request may have reached the kitchen before the return connection dropped). Re-submitting is safe because calls target a deterministic endpoint (`/checks/{checkId}/submit`) and carry a per-session `TransactionReference` header (`SessionReference::get()`). 
 * **Questions for the API Team:** I would confirm with the backend team: *1) Does the `/checks/{checkId}/submit` endpoint guarantee idempotency when receiving the same `{checkId}` and `TransactionReference`? 2) If an order was already processed during a dropped connection, does a retry return a `200 OK` (idempotent replay) or a specific `409 Conflict` code so we can handle it cleanly?*
 
+---
 
 ## Task 4 — Production-Readiness & Security Review
 
