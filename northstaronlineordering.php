@@ -37,7 +37,7 @@ if ( ! defined( 'CBS_PLUGIN_FILE' ) ) {
 }
 
 /**
- * Declare compatibility with WooCommerce High-Performance Order Storage (HPOS).
+ * --- Task 2: Declare compatibility with WooCommerce High-Performance Order Storage (HPOS) ---
  *
  * @since 1.0.8
  */

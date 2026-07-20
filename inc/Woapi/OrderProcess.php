@@ -443,12 +443,30 @@ class OrderProcess {
         CBSLogger::orders()->debug('Submitting order', ['payload' => json_decode($this->payload)]);
 
         $url = '/checks/' . ($checkId ? $checkId : self::CHECK_ID) . '/submit';
-        $response = (new Connection())->postData($this->siteId, $url, $this->tokenType, $this->payload);
+        
+        // --- Task 3: Bounded retry loop (max 3 attempts with 500ms backoff) ---
+        $attempt = 1;
+        $maxAttempts = 3;
+        while (true) {
+            $response = (new Connection())->postData($this->siteId, $url, $this->tokenType, $this->payload);
+            
+            // If successful, or if we've reached the 3rd attempt, or if the error is NOT transient (e.g. validation) -> exit
+            if ((!empty($response->Ok) && $response->Ok === true) || $attempt >= $maxAttempts || !self::isTransientError($response)) {
+                break;
+            }
+            
+            CBSLogger::orders()->warning("Transient submit failure (attempt $attempt/$maxAttempts). Retrying...", ['response' => $response]);
+            usleep(500000); // 500ms pause before retrying
+            $attempt++;
+        }
+        // --- End Retry ---
+
         CBSLogger::orders()->debug('Submit order response', ['response' => $response]);
         if ($response->Ok) {
             $this->checkId = $response->Data->CheckId;
             $this->checkNumber = $response->Data->CheckNumber;
             
+            // --- Task 2: HPOS-compatible OrderMeta CRUD operations ---
             OrderMeta::set($this->order, 'cbs_orderid', esc_attr(htmlspecialchars($response->Data->CheckId)), false);
             OrderMeta::set($this->order, 'cbs_siteid', esc_attr(htmlspecialchars($this->siteId)), false);
             OrderMeta::set($this->order, 'cbs_checknumber', esc_attr(htmlspecialchars($response->Data->CheckNumber)), true);
@@ -478,6 +496,7 @@ class OrderProcess {
             $this->checkId = $responsePayment->Data->CheckId;
             $this->checkNumber = $responsePayment->Data->CheckNumber;
             
+            // --- Task 2: HPOS-compatible OrderMeta CRUD operations ---
             OrderMeta::set($this->order, 'cbs_orderid', esc_attr(htmlspecialchars($responsePayment->Data->CheckId)), false);
             OrderMeta::set($this->order, 'cbs_siteid', esc_attr(htmlspecialchars($this->siteId)), false);
             OrderMeta::set($this->order, 'cbs_checknumber', esc_attr(htmlspecialchars($responsePayment->Data->CheckNumber)), true);
@@ -498,6 +517,7 @@ class OrderProcess {
         $url = '/checks/' . ($checkNumber ?? $this->checkNumber) . '/finalizebynumber';
         $response = (new Connection())->postData($this->siteId, $url, $this->tokenType, "{}");
         if ($response->Ok) {
+            // --- Task 2: HPOS-compatible OrderMeta CRUD operations ---
             OrderMeta::set($this->order, 'cbs_orderFinalized', esc_attr(htmlspecialchars($response->Data->CheckId)));
         }
         return $response;
@@ -724,5 +744,27 @@ class OrderProcess {
 
         CBSLogger::transactions()->debug('Adjustments array created', ['adjustments' => $allAdjustments]);
         return $allAdjustments;
+    }
+
+    /**
+     * Determines whether a WOAPI submission error is transient and safe to retry.
+     * Transport errors (timeouts, network drops) and 5xx/429 HTTP statuses are retryable.
+     * Business validation errors (400, 422, etc.) must fail fast.
+     *
+     * @param mixed $response
+     * @return bool
+     */
+    public static function isTransientError($response): bool
+    {
+        if (is_wp_error($response)) {
+            return true;
+        }
+
+        if (!is_object($response)) {
+            return false;
+        }
+
+        $code = (int) ($response->StatusCode ?? $response->status_code ?? 0);
+        return in_array($code, [408, 429, 500, 502, 503, 504], true);
     }
 }

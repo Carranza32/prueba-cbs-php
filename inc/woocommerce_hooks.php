@@ -1780,6 +1780,7 @@ function cbsCheckOrder($orderId)
         if ($responseQR) {
             CBSLogger::orders()->info('itemsleft sent');
         }
+        // --- Task 2: HPOS-compatible OrderMeta CRUD operations ---
         OrderMeta::set($order, 'cbs_orderid', esc_attr(htmlspecialchars($_COOKIE['checkid'])), false);
         OrderMeta::set($order, 'cbs_siteid', esc_attr(htmlspecialchars($_COOKIE['siteid'])), false);
         OrderMeta::set($order, 'cbs_checknumber', esc_attr(htmlspecialchars($_COOKIE['checknumber'])), true);

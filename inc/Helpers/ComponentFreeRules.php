@@ -33,6 +33,7 @@ class ComponentFreeRules {
 			return true;
 		}
 
+		// --- Task 1: FreeEvery promotional rule (every Nth selected instance is free) ---
 		if ( ! empty( $rule['FreeEvery'] ) && (int) $rule['FreeEvery'] > 0 && $position % (int) $rule['FreeEvery'] === 0 ) {
             return true;
         }

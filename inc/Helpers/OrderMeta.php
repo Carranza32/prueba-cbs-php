@@ -3,6 +3,7 @@
 namespace CBSNorthStar\Helpers;
 
 /**
+ * --- Task 2: HPOS-compatible Order Meta Helper ---
  * HPOS-compatible CRUD wrapper for CBS NorthStar order metadata (OE-26645).
  *
  * Replaces legacy direct post meta calls (get_post_meta / update_post_meta)
