@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "cbs-blocks/cbs-products",
+  "version": "0.1.0",
+  "title": "CBS Products",
+  "category": "widgets",
+  "icon": "archive",
+  "description": "example CBS block",
+  "supports": {},
+  "attributes": {
+    "lenght": {
+      "type": "number",
+      "default": 0
+    },
+    "siteId": {
+      "type": "string"
+    }
+  },
+  "textdomain": "cbs-products",
+  "viewScript": "file:view.js",
+  "style": "file:view.css",
+  "editorScript": "file:editor.js",
+  "editorStyle": "file:editor.css",
+  "render": "file:render.php"
+}

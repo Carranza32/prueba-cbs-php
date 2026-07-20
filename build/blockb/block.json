@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "cbs-blocks/blockb",
+  "version": "0.1.0",
+  "title": "Block B",
+  "category": "widgets",
+  "icon": "archive",
+  "description": "exmple CBS block",
+  "supports": {},
+  "attributes": {
+    "publicToken": {
+      "type": "string"
+    },
+    "instanceId": {
+      "type": "string"
+    }
+  },
+  "textdomain": "blockb",
+  "viewScript": "file:view.js",
+  "style": "file:view.css",
+  "editorScript": "file:editor.js",
+  "editorStyle": "file:editor.css",
+  "render": "file:render.php"
+}

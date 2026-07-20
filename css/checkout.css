@@ -1,0 +1,854 @@
+#giftcard-form {
+    margin-block-end: 10px;
+}
+
+#giftcard-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+#giftcard-section .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+    max-width: 250px;
+}
+
+#giftcard-section .submit-button {
+    margin-inline-start: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#giftcard-section #giftcard-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #fdfafa;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    animation: spining 1s linear infinite;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#loader-spinner {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes spining {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#delete-icon span {
+    pointer-events: none;
+}
+
+.giftcard-detail .indented-text {
+    padding-left: 40px;
+}
+
+.giftcard-detail td * {
+    font-weight: 500;
+}
+
+th#giftcard-total {
+    font-weight: 700;
+}
+
+.giftcard-detail td a {
+    text-decoration: none;
+    margin-left: 3px;
+}
+
+#order-review tr td:not(.giftcard-discount) {
+    padding-right: 60px;
+}
+
+.delete-giftcard {
+    cursor: pointer;
+    display: inline-block;
+    background-color: #C00000;
+    color: white;
+    margin-left: 10px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.delete-giftcard:hover {
+    background-color: #A00000;
+    color: white;
+}
+
+.woocommerce form .olo-coupon-row .form-row .input-text,
+.woocommerce-page form .olo-coupon-row .form-row .input-text {
+    width: auto;
+    border-radius: 10px;
+}
+
+body.woocommerce-checkout .woocommerce-error {
+    background-color: #fdf2f2 !important;
+    border-radius: 10px !important;
+    border: 1px solid #c00000 !important;
+    color: #c00000 !important;
+    padding: 10px 44px 10px 40px !important;
+    width: auto !important;
+    left: 16px !important;
+    right: 16px !important;
+    transform: none !important;
+    margin: 0 !important;
+    list-style: none;
+    text-align: left;
+    box-sizing: border-box;
+    font-size: 0.95rem !important;
+}
+
+
+body.woocommerce-checkout .woocommerce-error li {
+    list-style: none;
+    margin: 4px 0;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+body.woocommerce-checkout .woocommerce-error::before {
+    left: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+
+/* loyalty rewards */
+
+.rewards-dialog-top {
+    background-color: white;
+}
+.rewards-dialog-top button{
+    font-size: 40px;
+}
+
+.rewards-dialog[open] {
+    display: flex;
+    flex-direction: column;
+    max-height: 40rem;
+    background-color: #E1E8ED;
+    border: none;
+    width: 40rem;
+    padding: 0;
+    border-radius: 20px;
+    margin: auto;
+}
+
+#phone-number-dialog {
+    width: 25rem;
+    height: 18rem;
+}
+
+.phone-error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin: 0 40px;
+    text-align: center;
+    display: none;
+}
+
+.rewards-dialog-close {
+    float: inline-end;
+    border: none;
+    padding: 8px;
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-right: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.rewards-dialog-close:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.rewards-dialog-close:focus {
+    outline: 2px solid #2175C8;
+    outline-offset: 2px;
+}
+
+.rewards-dialog-title h1 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+
+.rewards-dialog-content,
+.rewards-dialog-loading {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px 60px;
+    background-color: #E1E8ED;
+}
+
+.rewards-dialog-content {
+    overflow-y: auto;
+    padding: 0px 20px 30px;
+    scrollbar-width: thin;
+}
+
+.rewards-dialog-content p {
+    margin-left: 18px;
+}
+
+#phone-number-dialog #customerPhoneNumber {
+    margin: 20px 40px 15px;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+#phone-number-dialog #customerPhoneNumber:focus {
+    outline: none;
+    border-color: #2175C8;
+    box-shadow: 0 0 0 3px rgba(33, 117, 200, 0.1);
+}
+
+.rewards-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+
+.rewards-column {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.rewards-column:nth-child(1) {
+    flex: 2;
+}
+
+.rewards-header {
+    font-weight: 700;
+    background-color: transparent;
+}
+
+.rewards-dialog-bottom {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    background-color: white;
+    margin-top: auto;
+}
+
+.reward-button {
+    border: none;
+    background-color: #2175C8;
+    box-sizing: content-box;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 400;
+    width: 80px;
+    min-height: 18px;
+}
+
+.reward-button:hover {
+    filter: invert(0.1);
+}
+
+.reward-button:disabled {
+    filter: opacity(0.5);
+}
+
+.reward-button.undo {
+    background-color: #E1E8ED;
+    color: #000;
+}
+
+.reward-button.done {
+    font-size: 18px;
+}
+
+.reward-button.done:hover {
+    filter: invert(0.1);
+    color: #000;
+}
+
+.reward-button.loading,
+.rewards-dialog-loading {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticket {
+    position: relative;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ticket::before,
+.ticket::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 28px;
+    background: #E1E8ED;
+    border-radius: 50%;
+}
+
+.ticket::before {
+    top: 40%;
+    left: -11px;
+}
+
+.ticket::after {
+    top: 40%;
+    right: -11px;
+}
+
+.rewards-count {
+    border-radius: 50%;
+    background-color: #f35a5a;
+    color: #f3f3f3;
+    font-size: 16px;
+    width: 24px;
+    padding: 5px;
+    text-align: center;
+}
+
+.rewards-count:empty {
+    display: none;
+}
+
+#order-review th#rewards-title,
+#order-review tr.rewards-detail {
+    color: #f35a5a;
+}
+/* payment methods */
+div#payment.woocommerce-checkout-payment {
+    margin-top: 13px;
+}
+.woocommerce-checkout #payment ul.payment_methods li {
+    display: flex !important;
+    align-items: baseline !important;
+    flex-wrap: wrap !important;
+}
+
+.woocommerce-checkout #payment ul.payment_methods li label {
+    display: inline-block !important;  
+}
+.woocommerce-checkout #payment ul.payment_methods li label img {
+    margin-left: auto !important;
+}
+
+@media screen and (max-width:770px) {
+    body.woocommerce-checkout .woocommerce-error {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        transform: none !important;
+        width: calc(100% - 32px) !important;
+        margin: 10px 16px !important;
+    }
+
+    .woocommerce-billing-fields__field-wrapper p label {
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 24px;
+    }
+
+    .woocommerce-billing-fields__field-wrapper p label span.optional {
+        font-weight: 400;
+        color: #767676;
+    }
+
+    .woocommerce form .form-row input.input-text, 
+    .woocommerce form .form-row textarea {
+        border: 1px solid #bbb;
+        border-radius: 10px;
+        padding: 13px;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    .woocommerce-page .select2-container .select2-search__field,
+    .woocommerce-page .select2-container .select2-selection,
+    span.select2-container--default .select2-selection--single {
+        border-radius: 10px;
+        height: 42px;
+    }
+
+    .woocommerce-page .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 42px;
+    }
+
+    .wpcot-tips .wpcot-tip .wpcot-tip-name,
+    #order_review_heading,
+    #giftcard-form h2 , #location-form h2 {
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    #location-form input{
+        width: -webkit-fill-available;
+        border-radius: 10px ;
+        padding: 10px 15px;
+        font-size: 1rem;
+        font-weight: 400;
+        border: 1px solid #ccc;
+    }
+
+    
+    .woocommerce-page table.shop_table th[class*="product-"] {
+        display: none;
+    }
+
+    #order-review {
+        border: none;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    #order_review tr th{
+        border: none;
+        font-weight: 400;
+        font-size: 1rem;
+    }
+    
+    #order-review th,
+    #order-review td {
+        padding: 0.625rem;
+    }
+
+    #order-review td.product-total{
+        border: none;
+        width: 25%;
+    }
+
+    #order-review tr td:not(.giftcard-discount) {
+        padding-right: 0;
+    }
+
+    .woocommerce #order-review td.product-name dl.variation dt {
+        display: none;
+    }
+
+    #order-review tr td[class$="-total"] {
+        text-align: right;
+        padding-right: 10px;
+        font-size: 1rem;
+        font-weight: 400;
+        vertical-align: top;
+    }
+
+    #order-review tr.cart_item {
+        background-color: #f5f5f5;
+    }
+    #order-review tr.cart_item td {
+        border-bottom: 1px solid #fff;
+    }
+    #order-review tr.cart-subtotal td,
+    #order-review tr.shipping td,
+    #order-review tr.fee td,
+    #order-review tr.giftcard-detail td,
+    #order-review tr.rewards-detail td,
+    #order-review tr.order-total td {
+        padding-right: 10px;
+        text-align: right;
+        font-weight: 400;
+    }
+
+    #order-review tr.order-total td,
+    #order-review tr.order-total th {
+        font-weight: 700;
+        border-top: 1px solid #bbb;
+    }
+
+    #order-review tr.cart_item:last-child td:first-child {
+        border-radius: 0 0 0 10px;
+    }
+    #order-review tr.cart_item:last-child td:last-child {
+        border-radius: 0 0 10px 0;
+    }
+    #order-review tr.cart_item:first-child td:first-child {
+        border-radius: 10px 0 0 0;
+    }
+    #order-review tr.cart_item:first-child td:last-child {
+        border-radius: 0 10px 0 0;
+    }
+
+    .wpcot-tips .wpcot-tip .wpcot-tip-values .wpcot-tip-value, 
+    .wpcot-tips .wpcot-tip .wpcot-tip-values .wpcot-tip-value-custom {
+        border-radius: 50px;
+        font-size: 0.875rem;
+        font-weight: 700;
+    }
+
+    .wpcot-tips .wpcot-tip .wpcot-tip-values .wpcot-tip-value > span, 
+    .wpcot-tips .wpcot-tip .wpcot-tip-values .wpcot-tip-value-custom > span {
+        padding: 10px 15px;
+        border-radius: 50px;
+    }
+    
+
+    #giftcard-section  div {
+        flex: 1 0;
+        min-width: 0;
+    }
+    
+    #giftcard-section div input {
+        width: -webkit-fill-available;
+        border-radius: 10px 0 0 10px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        font-weight: 400;
+        border: 1px solid #ccc;
+        height: 48px;
+        box-sizing: border-box;
+    }
+    
+    #giftcard-section div .error-message {
+        max-width: 100%;
+    }
+
+    #giftcard-section button#submit-gift-card {
+        border: 0;
+        border-radius: 0 10px 10px 0;
+        padding: 10px 15px;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-inline-start: 0;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        width: 75px;
+    }
+    #giftcard-section #giftcard-spinner {
+        width: 8px;
+        height: 8px;
+        margin-left: 5px;
+    }
+
+    .olo-coupon-row.olo-coupon-row { /* doubled class beats base rule defined after this @media block */
+        gap: 0;
+    }
+
+    .woocommerce form .olo-coupon-row .form-row,
+    .woocommerce-page form .olo-coupon-row .form-row {
+        flex: 1 0;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .woocommerce form .olo-coupon-row .form-row .input-text,
+    .woocommerce-page form .olo-coupon-row .form-row .input-text {
+        width: 100%;
+        border-radius: 10px 0 0 10px;
+        padding: 10px 15px;
+        font-size: 1rem;
+        font-weight: 400;
+        border: 1px solid #ccc;
+        height: 48px;
+        box-sizing: border-box;
+        display: block;
+    }
+
+    #olo-apply-coupon {
+        border-radius: 0 10px 10px 0;
+        padding: 10px 15px;
+        font-size: 1rem;
+        font-weight: 700;
+        margin: 0;
+        height: 48px;
+        width: auto;
+        flex-shrink: 0;
+    }
+
+    div#payment.woocommerce-checkout-payment {
+        background-color: #fff;
+        margin-top: 13px;
+        padding: 0;
+    }
+
+    .woocommerce-checkout div#payment ul.payment_methods {
+        padding: 0;
+    }
+
+    div#payment.woocommerce-checkout-payment input[type="radio"] {
+        display: none;
+    }
+
+
+    #add_payment_method div#payment ul.payment_methods li,
+    .woocommerce-cart div#payment ul.payment_methods li,
+    .woocommerce-checkout div#payment ul.payment_methods li {
+        background-color: #eee;
+        color: #000 !important;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .woocommerce-checkout #payment ul.payment_methods li label {
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: 700;
+        width: 100%;
+        margin-bottom: 0;
+        padding: 13px 15px;
+    }
+
+    
+    .woocommerce-checkout #payment ul.payment_methods li input[type="radio"]:checked + label {
+        border-radius: 10px 10px 0 0;
+        background-color: #000;
+        color: #fff !important;
+        font-size: 18px;
+    }
+    .woocommerce-checkout #payment ul.payment_methods li input[type="radio"]:checked + label + .payment_box {
+        border-radius: 0 0 10px 10px;
+        background-color: #000;
+        color: #eee;
+        padding: 0 15px 13px 15px;
+        font-size: 16px;
+    }
+
+    .woocommerce-checkout div#payment div.payment_box {
+        position: initial;
+        padding: 0;
+        margin: 0;
+        border-radius: 0;
+        background-color: transparent;
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .woocommerce-checkout div#payment div.payment_box::before {
+        display: none;
+    }
+
+    .woocommerce-checkout div#payment div.payment_box p,
+    .woocommerce-checkout div#payment div.payment_box p:last-child {
+        margin-top: 0;
+    }
+
+    .woocommerce-checkout div#payment div.payment_box p {
+        padding-top: 0;
+    }
+
+    #total-tag {
+        margin-left: 15px;
+        font-size: 1.13rem;
+        font-weight: 700;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    #phone-number-dialog {
+        width: 90vw;
+        height: 20rem;
+        max-width: 400px;
+    }
+
+    #phone-number-dialog #customerPhoneNumber {
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+
+    .rewards-dialog-title h1 {
+        margin-left: 20px;
+        margin-right: 20px;
+        text-align: center;
+    }
+}
+
+textarea[readonly],
+input[readonly] {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+#loyalty-button {
+    margin: 12px 0;
+}
+
+/* Taxable Badge Styles */
+.cbs-taxable-badge {
+    display: inline-block;
+    background-color: #bbb;
+    font-size: 0.75em;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* mobile styles for taxable */
+@media screen and (max-width: 768px) {
+    
+    #order-review td.product-name{
+        display:flex;
+        flex-wrap:wrap;
+        align-items:center;
+        gap:6px;
+        width: 100%;
+    }
+    #order-review td.product-name > *:not(.variation,.cbs-taxable-badge){
+        display:inline-flex;
+        align-items:center;
+    }
+    
+    #order-review strong.product-quantity{
+        white-space:nowrap;
+    }
+    #order-review span.cbs-taxable-badge{
+        max-height:27px;
+        order:4;
+        font-size: 0.72rem;
+    }
+    #order-review td.product-name .variation{
+        flex-basis:100%;
+        margin-top:4px;
+        order: 5;
+    }
+}
+.olo-applied-coupons {
+    display: flex;
+    gap: 10px;
+}
+.olo-applied-coupons li{
+    list-style: none;
+    width: fit-content;
+    border-radius: 50px;
+    background-color: #8080803b;
+    padding: 5px 19px;
+}
+.olo-coupon-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  width: 100%;
+}
+#olo_coupon_code_field{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.olo-coupon-row .form-row {
+  flex: 0 0 auto;
+}
+
+#olo-apply-coupon {
+  white-space: nowrap;
+}
+.olo-remove-coupon{
+    border-radius: 100%;
+    border: none;
+    padding: 1px 10px;
+    margin-left: 7px;
+    font-weight: 700;
+    background-color: transparent;
+}
+.olo-checkout-overlay{
+    background-color: #00000014;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.olo-checkout-message{
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+
+.wc-block-order-confirmation-totals {
+    max-height: 53vh;
+    overflow-y: auto;
+}
+.wc-block-order-confirmation-totals::-webkit-scrollbar {
+    width: 6px;
+}
+.wc-block-order-confirmation-totals::-webkit-scrollbar-track {
+    background: transparent;
+}
+.wc-block-order-confirmation-totals::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+#finalizeButton{
+    margin: 20px;
+}
+.wc-block-order-confirmation-totals__table thead {
+    position: sticky;
+    top: 0;
+    background-color: var(--wp--preset--color--base);
+}
+.wc-block-order-confirmation-totals__table tfoot {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--wp--preset--color--base);
+}
+
+.olo-hide-field{
+    display:none !important;
+}

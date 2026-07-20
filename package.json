@@ -1,0 +1,43 @@
+{
+  "name": "northstaronlineordering",
+  "version": "1.0.0",
+  "description": "=== Northstartonlineorderig === Contributors: (this should be a list of wordpress.org userid's) Donate link: https://example.com/ Tags: tag1, tag2 Requires at least: 4.7 Tested up to: 1.0 Stable tag: 1.0.9 Requires PHP: 7.0 License: GPLv2 or later License URI: https://www.gnu.org/licenses/gpl-2.0.html",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "develop": "node bundle.js",
+    "watch": "node bundle.js --watch",
+    "production": "node bundle.js && wp-scripts build",
+    "start": "wp-scripts start",
+    "test:js": "jest",
+    "test:js:coverage": "jest --coverage",
+    "test:js:watch": "jest --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/cbsnorthstar/northstar.woocommerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/cbsnorthstar/northstar.woocommerce/issues"
+  },
+  "homepage": "https://bitbucket.org/cbsnorthstar/northstar.woocommerce#readme",
+  "devDependencies": {
+    "jquery": "^3.7.1",
+    "laravel-mix": "6.0.49"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@wordpress/scripts": "^27.6.0",
+    "axios": "^1.11.0",
+    "html-react-parser": "^5.1.10",
+    "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 3,
+  "name": "cbs-blocks/product-detail",
+  "version": "0.1.0",
+  "title": "CBS Product Detail",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Block for displaying product details",
+  "supports": {},
+  "attributes": {
+    "productId": {
+      "type": "string",
+      "default": "17"
+    },
+    "visibility": {
+      "type": "string"
+    },
+    "components": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "northstaronlineordering",
+  "viewScript": "file:view.js",
+  "style": "file:view.css",
+  "editorScript": "file:editor.js",
+  "editorStyle": "file:editor.css",
+  "render": "file:render.php"
+}

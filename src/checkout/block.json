@@ -1,0 +1,23 @@
+{
+    "$schema": "https://json.schemastore.org/block.json",
+    "apiVersion": 3,
+    "name": "cbs-blocks/cbs-checkout",
+    "version": "0.1.0",
+    "title": "CBS Checkout",
+    "category": "widgets",
+    "icon": "archive",
+    "description": "Checkout CBS block",
+    "supports": {},
+    "attributes": {
+        "defaultimage": { "type": "string" },
+        "loader": { "type": "string" },
+        "button": { "type": "string" },
+        "slug": { "type": "string" }
+    },
+    "textdomain": "cbs-checkout",
+    "viewScript": "file:view.js",
+    "style": "file:view.css",
+    "editorScript": "file:editor.js",
+    "editorStyle": "file:editor.css",
+    "render": "file:render.php"
+}

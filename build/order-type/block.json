@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "cbs-blocks/order-type",
+  "version": "0.1.0",
+  "title": "CBS Order Type Block",
+  "category": "widgets",
+  "icon": "archive",
+  "description": "A pop up block for selecting order type",
+  "supports": {},
+  "attributes": {
+    "DineIn": {
+      "type": "object",
+      "default": {
+        "name": "Dine In",
+        "value": "DineIn",
+        "customName": "",
+        "enabled": true,
+        "area": "",
+        "id": "0"
+      }
+    },
+    "ToGo": {
+      "type": "object",
+      "default": {
+        "name": "To Go",
+        "value": "ToGo",
+        "customName": "",
+        "enabled": true,
+        "area": "",
+        "id": "1"
+      }
+    },
+    "Delivery": {
+      "type": "object",
+      "default": {
+        "name": "Delivery",
+        "value": "Delivery",
+        "customName": "",
+        "enabled": true,
+        "area": "",
+        "id": "2"
+      }
+    },
+    "orderType": {
+      "type": "string"
+    },
+    "redirectPage": {
+      "type": "string"
+    },
+    "idlePage": {
+      "type": "string"
+    }
+  },
+  "textdomain": "cbs-blocks-order-type",
+  "viewScript": "file:view.js",
+  "style": "file:view.css",
+  "editorScript": "file:editor.js",
+  "editorStyle": "file:editor.css",
+  "render": "file:render.php"
+}

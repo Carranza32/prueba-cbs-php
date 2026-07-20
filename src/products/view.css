@@ -1,0 +1,152 @@
+html {
+    scrollbar-width: none;
+}
+
+#products-block-wrapper {
+    margin-top: 60px;
+    height: 83vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+div.woocommerce ul.products {
+    padding-top: 15px;
+    padding-bottom: 25px;
+    align-content: flex-start;
+}
+
+.products::-webkit-scrollbar {
+    display: none;
+}
+
+.wp-block-group.wp-block-group-is-layout-flow {
+    margin-top: 0;
+}
+
+.quantity-section {
+    display: flex;
+    align-items: center;
+}
+.button.quick-add.success {
+    background-color: rgb(120, 189, 120) !important;
+}
+
+ul.products li.product button.quick-add,
+#search-results li.product button.quick-add,
+#sub-category li.product button.quick-add {
+    font-size: 1.5rem;
+    font-weight: 700;
+    width: 1.875rem;
+    border: none;
+    background-color: #2175C8;
+    color: #fff;
+    min-height: 35px;
+}
+
+/* OE-26569: under a LinkTo subcategory, a standalone Add button (.fullwidth)
+   should fill the card to match the Customize button width. The paired
+   Customize+Add layout has no .fullwidth, so it is unaffected. */
+#sub-category li.product button.quick-add.fullwidth {
+    width: 100%;
+}
+
+ul.products li.product button.quick-add *,
+#search-results li.product button.quick-add *,
+#sub-category li.product button.quick-add * {
+    pointer-events: none;
+}
+
+ul.products li.product .quantity-input {
+    box-sizing: border-box;
+    font-size: 1.125rem;
+    width: 2.8125rem;
+    line-height: 35px;
+    text-align: center;
+    border: none;
+    background: white;
+    border-top: 1px solid #2175C8;
+    border-bottom: 1px solid #2175C8;
+    padding-bottom: 0;
+    height: 35px;
+}
+
+ul.products li.product .button-decrease,
+#search-results li.product .button-decrease,
+#sub-category li.product .button-decrease {
+    border-radius: 10px 0 0 10px;
+}
+
+ul.products li.product .button-increase,
+#search-results li.product .button-increase,
+#sub-category li.product .button-increase {
+    border-radius: 0px 10px 10px 0px;
+}
+
+nav.woocommerce-pagination {
+    display: none;
+}
+
+#loading-more-container.hidden {
+    display: none;
+}
+
+.product-category-container {
+    width: 100%;
+}
+
+.product-list-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#loading-more-container {
+    margin: -80px 0 0 0;
+    text-align: center;
+}
+
+#loading-more-container svg {
+    width: 60px;
+    height: 60px;
+}
+
+.woocommerce-loop-category-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+#search-input {
+    position: fixed;
+    z-index: 9;
+    top: 90px;
+    padding: 10px;
+    width: 64%;
+    border-radius: 20px;
+}
+
+#search-results .product{
+    min-width: 200px;
+}
+
+#sub-category {
+    margin-top: 22px;
+}
+
+.breadcrumb-parent-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  display: inline;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: default;
+}
+
+.breadcrumb-parent-btn:focus-visible {
+  outline: 2px solid Highlight;
+  outline-offset: 2px;
+}
+.breadcrumb-separator {
+    margin: 0 0.5rem;
+}

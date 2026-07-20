@@ -1,0 +1,668 @@
+/* prettier-ignore-start */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+body{
+    font-family: 'Poppins', sans-serif !important;
+}
+.search-innner {
+        display: flex;
+    background-color: #f3f3f3;
+    box-shadow: 0px 0px 8px #0000001f;
+    border-radius: 10px;
+}
+.search-innner iframe {
+        border-radius: 10px 0px 0px 10px;
+}
+
+
+.search-info {
+    transform: translateY(-1px);
+    width: 100%;
+        font-family: Apercu, Heebo, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.search-info:hover
+{
+    border-style:1px solid dotted;
+}
+
+.search-loc-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #3a3a3a;
+        font-family: Apercu,Heebo,Helvetica Neue,Helvetica,Arial,sans-serif;
+        border-bottom: 2px solid #ff0000;
+            margin-bottom: 10px;
+}
+.search-loc-time {
+    color: #039a01;
+    font-weight: 500;
+    font-size: 14px;
+       font-family: Apercu,Heebo,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.search-loc-addres {
+        font-size: 14px;
+    text-transform: uppercase;
+    color: #214f53;
+    margin-bottom: 8px;
+       font-family: Apercu,Heebo,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.search-loc-action {
+    display: flex;
+    margin-top: 10px;
+    border-top: 2px dashed #d2d2d2;
+    padding-top: 10px;
+        font-family: Apercu,Heebo,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.search-loc-action a {
+        font-size: 14px;
+    color: #dd0031;
+    border-radius: 5px;
+    border: 1px solid #dd0031;
+        padding: 5px;
+    display: inline-block;
+    text-decoration: none;
+}
+.search-loc-action a:not(:last-child) {
+    margin-right: 10px;
+}
+.search-info span {
+    font-size: 13px;
+    color: #a0a0a0;
+}
+
+.se-form {
+    position: relative;
+}
+.s-icon {
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    font-size: 22px;
+    color: #545454;
+}
+.m-icon {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 18px;
+    background-color: #dd0031;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 25px;
+    color: white;
+    padding: 2px;
+    display: inline-block;
+}
+.se-form input{
+    height: 60px;
+    border-radius: 30px;
+    border: 1px solid #c1c1c1 !important;
+    background-color: #f4f8f9;
+    padding-left: 50px;
+    width:100%;
+}
+.se-form input[type="checkbox"]{
+    height: 20px !important;
+    width:unset !important;
+}
+.se-form .showmap_ckhbox{
+
+    border-radius: none !important;
+}
+
+.searchbtn
+{
+    text-align:center;
+}
+.searchbtn .btn {
+    color: #fff;
+    border: 1px solid #dd0031;
+    padding: 9px 26px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 100px;
+    font-size: 16px;
+    background: #d91414;
+    margin-top: 17px;
+}
+.seachlocation-modal .modal-header{
+border: 0px;
+    padding-bottom: 30px;
+}
+.seachlocation-modal .close {
+        background-color: #efefef;
+    opacity: 1;
+    width: 30px;
+    height: 31px;
+    position: absolute;
+    right: 30px;
+    padding: 0px;
+    top: 25px;
+    color: #000;
+    line-height: 0px;
+    border-radius: 20px;
+}
+.seachlocation-modal .close:focus {
+    outline: none;
+}
+.seachlocation-modal .close span{
+    position: relative;
+    top: -3px;
+    left: 0px;
+}
+.modal-body {
+    padding-bottom: 100px;
+}
+.searchmap{
+    width:210px;
+}
+.se-form select[name=range_miles]{
+    height:45px;
+    font-size:12px;
+    float:right;
+}
+
+    /* Set the size of the div element that contains the map */
+#map {
+  height: calc(100vh - 33vh);
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
+/* for_scrollbar */
+.for_scrollbar{
+        width: 50%;
+    position: relative;
+    max-height: calc(100vh - 33vh);
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.get_location_btn {
+    margin-bottom: 8px;
+    font-size: 12px;
+    padding: 7px 7px;
+    border-radius: 15px;
+    background-color: #dd0031;
+    color:white;
+}
+
+p.m-icon.north_icon {
+    background: none;
+    color: #000;
+    font-size: 16px;
+    margin-right: -14px;
+}
+select.north_select {
+    width: 100%;
+    float: right;
+    margin-top: 15px;
+    border: 2px solid #cfc7c0;
+    height: 58px;
+
+}
+select.north_select:focus{
+    border: 2px solid #000;
+}
+button.btn.north_btn {
+    margin: 14px 21% 0px;
+}
+.north_table{
+    width: 50px;
+    margin-right: 25px;
+    color: #dd0031;
+    border-radius: 5px;
+    border: 1px solid #dd0031;
+    padding: 5px;
+}
+
+
+/*********09-09-2021***********/
+.gutter-vr-40px .col-md-8 {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+.site-breadcrumbs{
+    right: 15px !important;
+}
+.content-area{
+    width: 100% !important;
+    padding-right: 0 !important;
+}
+.container{
+    width:100% !important;
+    max-width: 100% !important;
+    overflow: hidden;
+    padding: 0px 15px !important;
+}
+
+.search-content {
+    padding-left: 30px;
+    padding-right: 30px;
+    border-bottom: 5px solid #ff0000;
+    margin-bottom: 30px;
+}
+.search-content form {
+    display: flex;
+    width: 100%;
+}
+.leftinput{
+    width: calc(100% - 120px);
+}
+.search-content form .leftinput input{
+    margin:0px !important;
+    border:2px solid #fff;
+    border-bottom: 2px solid #cfc7c0 ;
+    outline: none !important;
+    box-shadow: none !important;
+    padding-right: 40px;
+}
+.search-content form .leftinput input:focus, .search-content form .leftinput input:active{
+    border:2px solid #000 !important;
+}
+.search-content form .leftinput{
+    position: relative;
+}
+.north_clear_keyword{
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    background: var(--cbs-search-clear-bg, #f7f7f7);
+    color: #545454;
+    cursor: pointer;
+    line-height: 1;
+}
+.north_clear_keyword.is-visible{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.north_clear_keyword:focus-visible{
+    outline: 2px solid #000;
+    outline-offset: 2px;
+    border-radius: 50%;
+}
+.searchbtn2 button.btn.north_btn{
+    margin:0px !important;
+    width: 120px;
+    height: 58px;
+    border-radius: 0;
+}
+.text-one h3{
+    font-size: 34px;
+    text-transform: uppercase;
+    font-weight: 900;
+    margin-bottom: 35px;
+}
+
+.search-list2 {
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.search-list2 .search-info {
+    padding: 20px 20px;
+    border: 1px solid #ccc;    
+    transition: all .3s ease;
+}
+.search-list2:hover .search-info{
+    box-shadow: 0 0 50px 0 rgb(0 0 0 / 20%);
+}
+
+.search-loc-name a{
+    text-decoration: none !important;
+}
+.search-loc-name a:hover{
+    color: #000000;
+}
+.search-loc-name .serial-n{
+    font-size: 16px;
+    display: inline-block;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    background: #ff0000;
+    padding: 0 10px;
+    margin-bottom: -1px;
+}
+
+.search-loc-addres i {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    background: #ff0000;
+    border-radius: 50%;
+    color: #fff;
+}
+
+a.btn-view1,
+.search-locate button {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #be3019;
+    border: 3px solid #be3019;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #fff !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: .1rem;
+    padding: .45em 1em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all .3s ease;
+}
+a.btn-view1:hover, a.btn-view1:focus{
+    background-color: #912513;
+    border-color: #912513;
+    color: #fff;
+}
+.search-locate{
+    padding: 0px 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.search-locate button:hover, .search-locate button:focus{
+    background-color: #912513;
+    border-color: #912513;
+    color: #fff;
+}
+.tablenumbr1{
+    display: flex;
+    width: 69%;
+    align-items: center;
+    justify-content: space-between;
+}
+.tablenumbr1 input{
+    height: 39px;
+    width: 100px;
+    margin-left: 10px;
+}
+.search-message{
+    text-align: center;
+    width: 100%;
+    padding: 20px 0px;
+    background-color: #fff;
+}
+.search-message .search-loc-name{
+    border: none;
+    font-size: 32px;
+    margin-bottom: 0;
+}
+.search-message .search-loc-time{
+    color: #999;
+}
+.search-message button{
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #be3019;
+    border: 3px solid #be3019;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #fff !important;
+    text-decoration: none !important;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: .1rem;
+    padding: .45em 1em;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all .3s ease;
+    margin-top: 15px;
+}
+.search-message button:hover, .search-message button:focus{
+    background-color: #912513;
+    border-color: #912513;
+    color: #fff;
+}
+
+.custom-row{
+    margin:0 -15px;
+    display: flex;
+    position: relative;
+}
+
+.search-list2 .search-innner .search-info {
+    border-radius: 10px;
+}
+
+.search-info .search-loc-name .serial-n {
+    border-radius: 8px 8px 0 0;
+}
+
+.search-loc-action a.btn-view1 {
+    border-radius: 8px;
+}
+
+@media screen and (max-width: 770px) {
+    #locations-content.for_scrollbar {
+        width: 100%;
+        height: 152px;
+        scrollbar-width: none;
+        overflow: hidden;
+    }
+    
+    .for_scrollbar .search-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .search-content form {
+        justify-content: center;
+    }
+
+    .search-content form .se-form.leftinput {
+        width: 100%;
+    }
+
+    .custom-row {
+        flex-direction: column;
+        height: 100%;
+        overflow-y: hidden;
+    }
+    
+    .search-content .searchbtn2 button.btn.north_btn,
+    .search-content .leftinput input {
+        height: 50px;
+        font-size: 1rem;
+        border-radius: 8px 0 0 8px;
+    }
+    
+    .search-content .searchbtn2 button.btn.north_btn {
+        width: 88px;
+        padding: 10px 15px;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    div.scroll-container {
+        height: 75%;
+        overflow-y: scroll;
+        padding-bottom: 120px;
+    }
+    
+    .section_map_custom {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+    
+    .section_map_custom.show {
+        max-height: 100%;
+    }
+    
+    #map-toggle-section {
+        display: flex;
+        justify-content: center;
+    }
+    
+    #map-toggle {
+        border: none;
+        background-color: transparent;
+        font-size: 1rem;
+        padding: 5px;
+        width: 100%;
+    }
+    
+    .search-list2 .search-innner {
+        background-color: #f3f3f3;
+        margin: 15px;
+        font-size: 1rem;
+    }
+
+    .search-loc-name .loc_name {
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .search-loc-action a.btn-view1 {
+        width: 100%;
+        height: 50px;
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    .search-info .search-loc-addres.time {
+        display: flex;
+    }
+    
+    .search-info .search-loc-addres.address,
+    .search-info .search-loc-addres.phone,
+    .search-info .search-loc-addres.time div.time {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #232322;
+        text-transform: none;
+    }
+    
+    i.fa.fa-phone-alt {
+        transform: scaleX(-1);
+        background-color: transparent;
+    }
+}
+@media screen and (min-width: 770px){
+    #locations-content.for_scrollbar {
+        overflow-y: hidden;
+    }
+
+    .search-content .searchbtn2 button.btn.north_btn {
+        border-radius: 0 8px 8px 0;
+    }
+        
+    .custom-row {
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    div.scroll-container {
+        height: 50%;
+        overflow-y: scroll;
+    }
+
+    #map-toggle-section {
+        display: none;
+    }
+
+    #map-container.section_map_custom {
+        width: 49%;
+        height: 100%;
+        position: absolute;
+        top: 30px;
+        right: 0%;
+        left: 50%;
+    }
+
+    .search-list2 {
+        width: 50%;
+    }
+}
+@media screen and (min-width: 820px) and (max-width: 1023px) {
+        div.scroll-container {
+        height: 65%;
+    }
+}
+
+/* Closed location (OE-26385): keep the button clickable so a tap surfaces the
+   toast, but present it as unavailable rather than a live CTA. */
+a.btn-view1.olo-closed,
+a.btn-view1.olo-closed:hover,
+a.btn-view1.olo-closed:focus {
+    background-color: #6b7280 !important;
+    border-color: #6b7280 !important;
+    cursor: not-allowed;
+}
+
+/* Open/Closed status badge on the locations list. */
+.olo-location-card__status {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    padding: 2px 10px;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.olo-location-card__status[data-status="open"] {
+    background: rgba(34, 197, 94, 0.13);
+    color: #15803d;
+}
+.olo-location-card__status[data-status="closed"] {
+    background: rgba(148, 163, 184, 0.13);
+    color: #475569;
+}
+
+/* Toast shown on a closed-location tap. */
+.olo-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 2rem;
+    z-index: 100000;
+    max-width: min(90vw, 30rem);
+    transform: translate(-50%, 1rem);
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    background: #1f2937;
+    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 200ms ease-out, transform 200ms ease-out, visibility 200ms;
+}
+.olo-toast.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+}
+@media (prefers-reduced-motion: reduce) {
+    .olo-toast {
+        transition: opacity 200ms ease-out, visibility 200ms;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* prettier-ignore-end */

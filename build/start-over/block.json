@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "cbs-blocks/start-over-block",
+  "version": "0.1.0",
+  "title": "CBS Start Over Block",
+  "category": "widgets",
+  "icon": "undo",
+  "description": "Block to restart the kiosk",
+  "supports": {},
+  "attributes": {
+    "idlePageSlug": {
+      "type": "string"
+    },
+    "devicePinSlug": {
+      "type": "string"
+    },
+    "time": {
+      "type": "number"
+    }
+  },
+  "textdomain": "northstaronlineordering",
+  "viewScript": "file:view.js",
+  "style": "file:view.css",
+  "editorScript": "file:editor.js",
+  "editorStyle": "file:editor.css",
+  "render": "file:render.php"
+}

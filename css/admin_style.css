@@ -1,0 +1,13 @@
+#qrcodeform{
+    gap: 10px;
+    display: flex;
+    margin-top: 5px;
+}
+
+.cbs-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    
+}

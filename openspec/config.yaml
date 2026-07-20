@@ -1,0 +1,41 @@
+schema: spec-driven
+
+context: |
+  Tech stack: PHP (WordPress/WooCommerce plugin), React (Gutenberg blocks & frontend components)
+  Domain: WooCommerce online ordering plugin (checkout, cart, coupons, sessions, payments, REST API)
+
+  Commit convention: Conventional Commits with ticket prefix
+    Format: [TICKET-NUMBER] type(scope): description
+    Types: feat, fix, refactor, chore, docs, test, style, perf
+    Example: [OE-123] Wocommerce: add upsell prompt before order submission
+
+  WordPress/WooCommerce standards:
+    - Follow WordPress Coding Standards (WPCS)
+    - Use WooCommerce hooks and filters over direct DB access
+    - Respect existing namespace structure
+    - Sanitize/escape all input and output
+
+  React standards:
+    - Functional components with hooks
+    - Keep components small and focused
+    - Colocate styles with components
+
+rules:
+  proposal:
+    - Keep proposals concise and focused on the problem
+    - Always include a "Non-goals" section to limit scope
+    - Identify affected WooCommerce hooks or REST endpoints
+    - Flag any checkout, payment, or session risks explicitly
+
+  requirements:
+    - Define acceptance criteria in plain language
+    - Include edge cases for guest vs logged-in users
+    - Note any WooCommerce version compatibility concerns
+    - Note any PHP version compatibility concerns
+
+  tasks:
+    - Break tasks into chunks of max 1 hour of work
+    - Each task must be independently testable
+    - PHP and React tasks should be separated into distinct chunks
+    - Include a task for manual QA or regression check on checkout flows
+    - First task should always be: read and understand affected files

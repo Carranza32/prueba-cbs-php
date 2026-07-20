@@ -1,0 +1,12 @@
+/* styles for cart page */
+
+.woocommerce-message {
+	display: none !important;
+}
+
+
+@media screen and (max-width: 1024px) {
+	body.woocommerce-cart .cart-collaterals {
+		padding-bottom: 80px;
+	}
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 3,
+  "name": "cbs-blocks/cbs-total",
+  "version": "0.1.0",
+  "title": "CBS total",
+  "category": "widgets",
+  "icon": "archive",
+  "description": "Block to display the total from the cart",
+  "supports": {},
+  "attributes": {
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "shortcodes": {
+      "type": "string"
+    },
+    "closeicon": {
+      "type": "string"
+    }
+  },
+  "textdomain": "cbs-total",
+  "viewScript": "file:view.js",
+  "style": "file:view.css",
+  "editorScript": "file:editor.js",
+  "editorStyle": "file:editor.css",
+  "render": "file:render.php"
+}

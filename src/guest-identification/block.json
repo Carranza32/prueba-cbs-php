@@ -1,0 +1,20 @@
+{
+    "$schema": "https://json.schemastore.org/block.json",
+    "apiVersion": 2,
+    "name": "cbs-blocks/guest-identication",
+    "version": "0.1.0",
+    "title": "CBS Guest Identifier",
+    "category": "widgets",
+    "icon": "archive",
+    "description": "A block that displays a guest identifier form.",
+    "supports": {},
+    "attributes": {
+        "showGuestName": { "type": "boolean", "default": true }
+    },
+    "textdomain": "northstaronlineordering",
+    "viewScript": "file:view.js",
+    "style": "file:view.css",
+    "editorScript": "file:editor.js",
+    "editorStyle": "file:editor.css",
+    "render": "file:render.php"
+}

@@ -1,0 +1,20 @@
+{
+  "Id": "98adff4265b742a9827383633deab634",
+  "Attempt": 1,
+  "Properties": {
+    "OrderEntrySiteId": "9c36ba2f-412b-422f-9003-bfdf06cf2919"
+  },
+  "Notifications": [
+    {
+      "Action": "MenuChanged",
+      "CorrelationId": "00000000-0000-0000-0000-000000000000",
+      "Name": "MenuChanged",
+      "SiteId": "9c36ba2f-412b-422f-9003-bfdf06cf2919",
+      "Arguments": {
+        "Description": "UnavailableItems",
+        "MenuItems": [],
+        "Components": []
+      }
+    }
+  ]
+}

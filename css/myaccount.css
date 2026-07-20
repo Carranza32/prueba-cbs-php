@@ -1,0 +1,265 @@
+/* MyAccount Page Styles */
+
+/* ==========================================================================
+   MyAccount Navigation Menu - Grid Layout with Icons
+   ========================================================================== */
+
+.woocommerce-account .woocommerce {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+.woocommerce-MyAccount-navigation,
+.woocommerce-account .woocommerce-MyAccount-navigation {
+    width: 100%;
+    margin-bottom: 2rem;
+    margin-left: 0;
+    margin-right: 0;
+    float: none;
+}
+
+body.woocommerce-account .woocommerce-MyAccount-navigation ul,
+body .woocommerce-account .woocommerce-MyAccount-navigation ul,
+body .main-content .wrap-container .woocommerce .woocommerce-MyAccount-navigation ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    list-style: none;
+    list-style-type: none;
+    margin: 0;
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body.woocommerce-account .woocommerce-MyAccount-navigation ul li,
+body .woocommerce-account .woocommerce-MyAccount-navigation ul li {
+    margin: 0;
+    margin-left: 0;
+    list-style: none;
+    list-style-type: none;
+}
+
+.woocommerce-MyAccount-navigation ul li a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.woocommerce-MyAccount-navigation ul li a:hover {
+    background-color: #fff;
+    border-color: #000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.woocommerce-MyAccount-navigation ul li.is-active a {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+/* Font Awesome Icons */
+.woocommerce-MyAccount-navigation ul li a::before {
+    font-family: 'FontAwesome';
+    font-size: 1.5rem;
+    width: 1.5rem;
+    text-align: center;
+}
+
+/* Dashboard Icon */
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--dashboard a::before {
+    content: '\f0e4'; /* fa-sitemap / dashboard */
+}
+
+/* Orders Icon */
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--orders a::before {
+    content: '\f07a'; /* fa-shopping-cart */
+}
+
+/* Downloads Icon */
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--downloads a::before {
+    content: '\f019'; /* fa-download */
+}
+
+/* Addresses Icon */
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--edit-address a::before {
+    content: '\f015'; /* fa-home */
+}
+
+/* Account Details Icon */
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--edit-account a::before {
+    content: '\f007'; /* fa-user */
+}
+
+/* Payment Methods Icon */
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--payment-methods a::before {
+    content: '\f09d'; /* fa-credit-card */
+}
+
+/* Logout Icon and Styles */
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-logout {
+    grid-column: 1 / -1;
+}
+
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-logout a {
+    background-color: #fff;
+    color: #dc3545;
+    border-color: #dc3545;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-logout a::before {
+    content: '\f08b'; /* fa-sign-out */
+    color: #dc3545;
+}
+
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-logout a:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-logout a:hover::before {
+    color: #fff;
+}
+
+/* Active state icon color */
+.woocommerce-MyAccount-navigation ul li.is-active a::before {
+    color: #fff;
+}
+
+.woocommerce-MyAccount-content p
+{
+    margin: 30px 0;
+}
+
+header.woocommerce-Address-title.title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 5px 0;
+}
+
+.woocommerce-Address {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 15px 0;
+    min-height: 200px;
+}
+
+/* ==========================================================================
+   WooCommerce Order Details Table Adjustments
+   ========================================================================== */
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-orders-table td {
+    width: auto;
+}
+span.woocommerce-Price-amount.amount {
+    margin-left: auto;
+    margin-right: 4px;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media screen and (min-width: 769px) {
+    /* Desktop: Sidebar Layout - Only when logged in (navigation exists) */
+    .woocommerce-account .woocommerce:has(.woocommerce-MyAccount-navigation) {
+        display: flex;
+        gap: 2rem;
+        align-items: flex-start;
+        margin-top: 70px;
+    }
+    
+    .woocommerce-MyAccount-navigation,
+    .woocommerce-account .woocommerce-MyAccount-navigation {
+        width: 280px;
+        flex-shrink: 0;
+        margin-bottom: 0;
+    }
+    
+    body.woocommerce-account .woocommerce-MyAccount-navigation ul,
+    body .woocommerce-account .woocommerce-MyAccount-navigation ul,
+    body .main-content .wrap-container .woocommerce .woocommerce-MyAccount-navigation ul {
+        grid-template-columns: 1fr;
+    }
+    
+    .woocommerce-MyAccount-navigation ul li.woocommerce-MyAccount-navigation-link--customer-logout {
+        grid-column: 1;
+    }
+    
+    .woocommerce-MyAccount-content,
+    .woocommerce-account .woocommerce-MyAccount-content {
+        flex: 1;
+        width: auto;
+    }
+
+    /* Address Section Tablet */
+    .woocommerce-Address {
+        min-height: 268px;
+    }
+
+    .woocommerce-MyAccount-content .woocommerce-Addresses .woocommerce-Address-title a.edit {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+    }
+    
+    span.woocommerce-Price-amount.amount {
+        margin-left: revert;
+        margin-right: revert;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    /* Address Section Big screens */
+    .woocommerce-Address {
+        min-height: 320px;
+    }
+}
+
+/* ==========================================================================
+   Add Billing Address Button
+   ========================================================================== */
+
+.woocommerce-MyAccount-content .woocommerce-Addresses .woocommerce-Address-title a.edit {
+    border: 1px solid #000;
+    padding: 10px 15px;
+    margin-left: auto;
+    text-align: center;
+}
+
+/* Additional button states */
+.woocommerce-MyAccount-content .woocommerce-Addresses .woocommerce-Address-title a.edit:hover {
+    border-color: #333;
+}
+
+.woocommerce-MyAccount-content .woocommerce-Addresses .woocommerce-Address-title a.edit:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   WooCommerce Info Message - Orders Empty State
+   ========================================================================== */
+
+.woocommerce-MyAccount-content .woocommerce-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.woocommerce-MyAccount-content .woocommerce-info .button {
+    margin-left: auto;
+    text-align: center;
+}

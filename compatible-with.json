@@ -1,0 +1,22 @@
+{
+  "northstarpaymentgateway": {
+    "path": "plugins/northstarpaymentgateway",
+    "expected": "57",
+    "mode": "kiosk"
+  },
+  "woocommerce-gateway-authorize-net-cim": {
+    "path": "plugins/woocommerce-gateway-authorize-net-cim",
+    "expected": "52",
+    "mode": "olo"
+  },
+  "theme-cbs-kiosk-2": {
+    "path": "themes/theme-cbs-kiosk-2",
+    "expected": "177",
+    "mode": "kiosk"
+  },
+  "theme-cbs-olo-myrestaurant": {
+    "path": "themes/theme-cbs-olo-myrestaurant",
+    "expected": "523",
+    "mode": "olo"
+  }
+}

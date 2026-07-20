@@ -1,0 +1,32 @@
+.start-over-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    column-gap: 0.61rem;
+}
+
+.start-over-button .start-over__icon {
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: currentColor;
+}
+
+.start-over-button .start-over__text {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+#cbs-loader{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    background-color: #0000004f;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}

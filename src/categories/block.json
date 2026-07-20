@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json.schemastore.org/block.json",
+    "apiVersion": 2,
+    "name": "cbs-blocks/cbs-categories",
+    "version": "0.1.0",
+    "title": "CBS Categories",
+    "category": "widgets",
+    "icon": "archive",
+    "description": "CBS block categories",
+    "supports": {},
+    "attributes": {
+        "siteId": { "type": "string" },
+        "flexDirection": { "type": "boolean" , "default":false },
+        "defaultimage" : { "type": "string" }
+    },
+    "textdomain": "cbs-categories",
+    "viewScript": "file:view.js",
+    "style": "file:view.css",
+    "editorScript": "file:editor.js",
+    "editorStyle": "file:editor.css",
+    "render": "file:render.php"
+}

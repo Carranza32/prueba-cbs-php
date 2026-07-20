@@ -1,0 +1,101 @@
+
+::backdrop {
+    background-color: #000;
+    opacity: 0.40;
+}
+
+.guest-identifier-dialog-content,
+.guest-identifier-form,
+.guest-identifier-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.guest-identifier-dialog-content {
+    padding: 3.75rem;
+    row-gap: 1.05rem;
+}
+
+.close-button-guest-identifier {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    padding: 1rem;
+    background-color: transparent;
+    color: #000;
+    font-size: 2rem;
+    font-weight: 700;
+    border: none;
+}
+
+.guest-identifier-form {
+    row-gap: 0.6rem;
+    margin-bottom: 1.25rem;
+}
+
+.guest-identifier-name,
+.guest-identifier-phone {
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 1.655rem 1.5rem;
+    border-radius: 20px;
+    border: #888 1px solid;
+}
+
+.guest-identifier-name:focus,
+.guest-identifier-phone:focus {
+    border: #000 1px solid;
+}
+
+.numeric-pad {
+    display: grid;
+    grid-auto-columns: auto;
+    grid-auto-rows: auto;
+    grid-template-columns: auto auto auto;
+    grid-gap: 0.94rem;
+}
+
+.numeric-pad .numeric-pad-button {
+    color: #000;
+    background-color: #E1E8ED;
+    font-size: 2.8331rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 20px;
+    width: 11rem;
+    height: 11rem;
+}
+
+.zero-button {
+    grid-column: 2/3;
+}
+
+.numeric-pad .backspace-button {
+    grid-column: 3/3;
+    background-color: #fff;
+}
+
+.numeric-pad-button:active,
+.submit-guest-identifier:active {
+    filter: brightness(0.8);
+}
+
+.guest-identifier-notice {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.submit-guest-identifier {
+    background-color: #2175C8;
+    padding: 2.5rem 1.375rem;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+}
+.numeric-pad.hide{
+    display: none;
+}

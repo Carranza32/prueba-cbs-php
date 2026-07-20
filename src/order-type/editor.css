@@ -1,0 +1,12 @@
+.order-type-toggle {
+    margin-left: 20px;
+}
+
+.order-type-types-container {
+    padding: 20px;
+    background-color: #ccc;
+}
+
+.kiosk-order-type__custom-name {
+    margin: 10px 0;
+}

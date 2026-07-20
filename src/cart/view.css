@@ -1,0 +1,188 @@
+.cart-block-container .cart-block-header{
+    display: flex;
+    justify-content: space-between;
+
+}
+.cart-block-container {
+
+    background-color: white;
+}
+.cart-block-container.show {
+    
+    transition: transform 0.3s ease;
+    transform: translateY(-100%);
+    position: absolute;
+    max-width: var(--wp--style--global--content-size);
+    width: 100%;
+}
+.cart-block-container .cart-block-header .cart-number-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+.cart-block-container  .cart-list-container{
+    display: none ;
+}
+.cart-block-container  .cart-list-container.show{
+    display: block;
+}
+.cart-block-container .cart-list{
+  max-height: 40vh;
+  overflow-y: auto;
+}
+.item-title{
+  margin-bottom: 5px;
+}
+.item-components{
+  font-weight: 300;
+}
+.item-components dl{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.item-components dd{
+  margin-left: 0px;
+}
+
+.toggleContainer {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: fit-content;
+    border: 3px solid #d0d0d0;
+    border-radius: 10px;
+    background: #d0d0d0;
+    font-weight: bold;
+    color: #343434;
+    cursor: pointer;
+  }
+  .toggleContainer::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0%;
+    border-radius:10px;
+    background: white;
+    transition: all 0.3s;
+  }
+  .toggleCheckbox:checked + .toggleContainer::before {
+     left: 50%;
+  }
+  .toggleContainer div {
+    padding: 6px;
+    text-align: center;
+    z-index: 1;
+  }
+  .toggleCheckbox {
+    display: none !important;
+  }
+  .toggleCheckbox:checked + .toggleContainer div:first-child{
+    color: white;
+    transition: color 0.3s;
+  }
+  .toggleCheckbox:checked + .toggleContainer div:last-child{
+    color: #343434;
+    transition: color 0.3s;
+  }
+  .toggleCheckbox + .toggleContainer div:first-child{
+    color: #343434;
+    transition: color 0.3s;
+  }
+  .toggleCheckbox + .toggleContainer div:last-child{
+    color: white;
+    transition: color 0.3s;
+  }
+
+  .cart-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cart-item .cart-item-description{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .cart-item .cart-item-price{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .cart-block-container .wc-prl-recommendations .product-description{
+    display: none;
+  }
+  .cart-block-container .wc-prl-recommendations .button-container{
+    display: none;
+  }
+
+.cart-label{
+  display: flex;
+  gap: 10px;
+}
+
+.dropdown-arrow{
+  transition: transform 0.5s ease;
+}
+.dropdown-arrow.show{
+  transform: rotate(180deg);
+}
+#edit-icon,
+#delete-icon {
+  cursor: pointer;
+}
+
+#edit-icon span,
+#delete-icon span {
+  pointer-events: none;
+}
+.cart-number{
+  background-color: var(--wp--preset--color--accent);
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  border-radius: 100%;
+  color: var(--wp--preset--color--base-2);
+  padding: 5px;
+  font-size: 20px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+ul.serving-options {
+  list-style: none;
+}
+
+ul.serving-options li {
+  font-size: 1.12rem;
+  font-weight: 500;
+  padding: 5px 0 5px 12px;
+}
+
+.cart_components .component-row,
+.cart_servingoptions .component-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(100%, 180px);
+}
+
+.cart_components .component-price,
+.cart_servingoptions .component-price {
+  margin-left: auto;
+  background: #f0f0f0;
+  color: #333;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 0.85em;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#cart-block-cbs .wc-prl-recommendations .products{
+  padding-left: 0px !important;
+  justify-content: center;
+}

@@ -1,0 +1,14 @@
+.cbs-config-img{
+    width: 120px;
+    height: 120px !important;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.cbs-setting-dropdown{
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.cbs-setting-dropdown .components-base-control{
+    width: 50%;
+}

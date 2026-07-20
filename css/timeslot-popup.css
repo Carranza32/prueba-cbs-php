@@ -1,0 +1,508 @@
+/* ── Time-Slot Navigation Popup ──────────────────────────── */
+
+#olo-ts-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;                     /* center on both axes with inset:0 + fixed width */
+    border: none;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 460px;
+    max-height: calc(100vh - 32px);   /* fallback for browsers without dvh */
+    max-height: calc(100dvh - 32px);  /* contain within the mobile dynamic viewport */
+    overflow-y: auto;                 /* scroll long content inside the dialog, not the page */
+    padding: 32px 28px 24px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .25);
+    animation: oloTsFadeIn .25s ease;
+}
+
+/* Lock background page scroll while the time-slot modal is open.
+   The scroll container on these themes is <html> (not <body>) and iOS Safari
+   ignores overflow:hidden altogether, so a position:fixed lock on <body> is
+   required to fully stop the background from scrolling. The pre-lock scroll
+   offset is supplied via --olo-ts-scroll-y (set from JS) and restored on close
+   so the page does not jump to the top when the modal is dismissed. */
+html.olo-ts-scroll-lock {
+    overflow: hidden;
+}
+
+/* Doubled class raises specificity so these declarations win over the theme's
+   body.menu-items { overflow-y: scroll !important } and body { height: 100vh }
+   regardless of stylesheet load order. */
+body.olo-ts-scroll-lock.olo-ts-scroll-lock {
+    position: fixed;
+    top: var(--olo-ts-scroll-y, 0);
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* The theme sets body { height: 100vh }, so a position:fixed body shifted up
+       by a large offset (bottom of a long page) lands entirely above the viewport
+       and the page paints flat/empty. Force content height and non-clipping so the
+       shifted body still covers the viewport at any scroll offset. */
+    height: auto !important;
+    max-height: none !important;
+    overflow: hidden !important;
+}
+
+.olo-ts-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #888;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 150ms ease, color 150ms ease;
+}
+
+.olo-ts-close:hover {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.olo-ts-close:active {
+    transform: scale(0.92);
+}
+
+#olo-ts-dialog::backdrop {
+    background: rgba(0, 0, 0, .65);
+}
+
+/* Forced (locked) modal: hide the close button until a slot is selected */
+#olo-ts-dialog.olo-ts-forced .olo-ts-close {
+    display: none;
+}
+
+/* Required-slot prompt, shown only in forced mode */
+.olo-ts-required-msg {
+    display: none;
+    text-align: center;
+    margin: 0 0 16px;
+    font-size: .9rem;
+    color: #c00;
+}
+
+#olo-ts-dialog.olo-ts-forced .olo-ts-required-msg {
+    display: block;
+}
+
+@keyframes oloTsFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+#olo-ts-dialog h3 {
+    margin: 0 0 20px;
+    font-size: 1.35rem;
+    text-align: center;
+}
+
+/* Date picker row */
+.olo-ts-date-row {
+    margin-bottom: 16px;
+}
+
+.olo-ts-date-row label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: .9rem;
+}
+
+.olo-ts-date-row input[type="date"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+/* Select */
+.olo-ts-select-row {
+    margin-bottom: 20px;
+}
+
+.olo-ts-select-row label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: .9rem;
+}
+
+.olo-ts-select-row select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    appearance: auto;
+}
+
+/* Loading */
+.olo-ts-loading {
+    display: none;
+    text-align: center;
+    padding: 10px 0;
+    font-size: .9rem;
+    color: #666;
+}
+
+.olo-ts-loading.olo-ts-active {
+    display: block;
+}
+
+/* Error */
+.olo-ts-error {
+    display: none;
+    text-align: center;
+    padding: 8px;
+    font-size: .85rem;
+    color: #c00;
+    background: #fff0f0;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.olo-ts-error.olo-ts-active {
+    display: block;
+}
+
+.olo-ts-confirm {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #2175c8;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.olo-ts-confirm:hover {
+    background: #1a5fa0;
+}
+
+.olo-ts-confirm:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.olo-ts-date-row.olo-ts-hidden {
+    display: none;
+}
+
+/* ── Cart-change warning ─────────────────────────────────── */
+.olo-ts-warning {
+    background: #fff8e1;
+    border: 1px solid #f0c040;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.olo-ts-warning p {
+    margin: 0 0 14px;
+    font-size: .9rem;
+    color: #5a4000;
+}
+
+.olo-ts-warning-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.olo-ts-warn-back {
+    padding: 9px 18px;
+    border: 1px solid #999;
+    border-radius: 6px;
+    background: #fff;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.olo-ts-warn-back:hover {
+    background: #f0f0f0;
+}
+
+.olo-ts-warn-continue {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    background: #c00;
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.olo-ts-warn-continue:hover {
+    background: #a00;
+}
+
+/* OE-26492: daypart-change warning — auto-switch-to-ASAP notice + generic removal warning. */
+.olo-ts-daypart-asap-msg {
+    font-weight: 600;
+}
+
+/* Inline spinner shown inside the Continue button while the transition applies. */
+.olo-ts-btn-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: olo-ts-spin 0.8s linear infinite;
+    vertical-align: middle;
+}
+
+.olo-ts-warn-continue:disabled {
+    opacity: .85;
+    cursor: default;
+}
+
+/* Informative line in the navigating spinner (e.g. the daypart→ASAP switch reason). */
+.olo-ts-navigating-info {
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+}
+
+.olo-ts-header-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    padding: 6px 10px;
+    color: #222;
+    white-space: nowrap;
+}
+
+.olo-ts-header-label {
+    font-weight: 700;
+}
+
+.olo-ts-header-sep {
+    color: #999;
+}
+
+.olo-ts-header-edit {
+    background: none;
+    border: none;
+    color: #2175c8;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 2px;
+    line-height: 1;
+}
+
+.olo-ts-header-edit:hover {
+    color: #1a5fa0;
+}
+
+.olo-ts-header-asap {
+    background: #2175c8;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background .2s;
+}
+
+.olo-ts-header-asap:hover {
+    background: #1a5fa0;
+}
+
+.olo-ts-header-asap:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.olo-ts-header-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+    .olo-ts-header-info {
+        background: #f5f5f5;
+        border-bottom: 1px solid #ddd;
+    }
+
+
+}
+
+@media screen and (max-width: 425px) {
+    .olo-ts-header-info .olo-ts-header-label {
+        display: none;
+    }
+}
+
+/* Give the clamped dialog more usable width and tighter padding on phones */
+@media screen and (max-width: 480px) {
+    #olo-ts-dialog {
+        width: 94%;
+        padding: 28px 18px 20px;
+    }
+}
+
+/* ── Navigating spinner (shown while page loads) ────────── */
+.olo-ts-navigating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 16px;
+}
+
+.olo-ts-navigating p {
+    font-size: 15px;
+    color: #555;
+    margin: 0;
+}
+
+.olo-ts-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e0e0e0;
+    border-top-color: #2175c8;
+    border-radius: 50%;
+    animation: olo-ts-spin 0.8s linear infinite;
+}
+
+@keyframes olo-ts-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── Checkout read-only time slot summary ───────────────── */
+/* Table context (position "After your order") */
+tr.olo-ts-checkout-summary td {
+    background: #f8f9fa;
+    padding: 12px 16px;
+}
+
+/* Div context (all other positions) */
+div.olo-ts-checkout-summary {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+}
+
+.olo-ts-checkout-summary p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+/* ── Mobile inline header chip ──────────────────────────────
+   Visible only at ≤ 768px. Sits between logo and hamburger.
+   Desktop/tablet: hidden via the base rule below.
+   ─────────────────────────────────────────────────────────── */
+
+/* Hidden by default — only shown inside the mobile media query */
+.olo-ts-mobile-header-slot {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* Flex container: takes remaining space between logo and hamburger */
+    .olo-ts-mobile-header-slot {
+        display: flex;
+        flex: 1 1 0;
+        min-width: 0;
+        align-items: center;
+        justify-content: center;
+        padding: 0 6px;
+    }
+
+    /* Pill chip */
+    .olo-ts-mobile-header-slot .olo-ts-header-info {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: rgba(33, 117, 200, 0.08);
+        border-radius: 100px;
+        padding: 4px 10px;
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        /* Reset any inherited background/border from the 1024px rule */
+        border-bottom: none;
+    }
+
+    /* Hide date components — show time only */
+    .olo-ts-mobile-header-slot .olo-ts-header-label,
+    .olo-ts-mobile-header-slot .olo-ts-header-date,
+    .olo-ts-mobile-header-slot .olo-ts-header-sep {
+        display: none;
+    }
+
+    /* Truncate time on very narrow viewports (iPhone SE 320px) */
+    .olo-ts-mobile-header-slot .olo-ts-header-time {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 70px;
+        display: inline-block;
+    }
+
+    /* Compact ASAP badge inside chip */
+    .olo-ts-mobile-header-slot .olo-ts-header-asap {
+        font-size: 10px;
+        padding: 3px 7px;
+    }
+
+    /* Press feedback — edit button */
+    .olo-ts-mobile-header-slot .olo-ts-header-edit:active {
+        transform: scale(0.93);
+        transition: transform 100ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Press feedback — ASAP button */
+    .olo-ts-mobile-header-slot .olo-ts-header-asap:active {
+        transform: scale(0.93);
+        transition: transform 100ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+}
+
+/* Spring entry animation — skipped when reduced motion is preferred */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+    @keyframes ts-chip-in {
+        from {
+            opacity: 0;
+            scale: 0.85;
+        }
+        to {
+            opacity: 1;
+            scale: 1;
+        }
+    }
+
+    .olo-ts-mobile-header-slot .olo-ts-header-info {
+        animation: ts-chip-in 280ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+}

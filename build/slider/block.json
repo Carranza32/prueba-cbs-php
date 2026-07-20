@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json.schemastore.org/block.json",
+  "apiVersion": 2,
+  "name": "cbs-blocks/cbs-slider",
+  "version": "0.1.0",
+  "title": "CBS Slider",
+  "category": "widgets",
+  "icon": "archive",
+  "description": "exmple CBS block",
+  "supports": {},
+  "attributes": {
+    "imageUrl": {
+      "type": "string"
+    },
+    "interval": {
+      "type": "number"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "dropdowns": {
+      "type": "array",
+      "default": [
+        {
+          "id": 1,
+          "selected": "1",
+          "imageUrl": "",
+          "position": 1,
+          "menuitem": "0"
+        }
+      ]
+    }
+  },
+  "textdomain": "cbs-slider",
+  "viewScript": "file:view.js",
+  "style": "file:view.css",
+  "editorScript": "file:editor.js",
+  "editorStyle": "file:editor.css",
+  "render": "file:render.php"
+}
