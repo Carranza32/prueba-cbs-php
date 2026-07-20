@@ -36,6 +36,13 @@ final class ComponentFreeRulesTest extends TestCase {
 			'FirstDefaultComponentsLevelsFree, not default' => [ false, [ 'FirstDefaultComponentsLevelsFree' => 2 ], 1, 1, false ],
 			'FreeAfter, position beyond threshold' => [ false, [ 'FreeAfter' => 2 ], 3, 1, true ],
 			'FreeAfter, position at threshold' => [ false, [ 'FreeAfter' => 2 ], 2, 1, false ],
+
+			'FreeEvery, matches exact multiple' => [ false, [ 'FreeEvery' => 3 ], 3, 1, true ],
+            'FreeEvery, does not match non-multiple' => [ false, [ 'FreeEvery' => 3 ], 2, 1, false ],
+            'FreeEvery, handles higher multiples' => [ false, [ 'FreeEvery' => 3 ], 6, 2, true ],
+            'FreeEvery, ignores zero safely' => [ false, [ 'FreeEvery' => 0 ], 3, 1, false ],
+            'FreeEvery, ignores negative values safely' => [ false, [ 'FreeEvery' => -2 ], 4, 1, false ],
+			'FreeEvery combined with FreeUpTo (pos 3 free via FreeEvery after FreeUpTo:2)' => [ false, [ 'FreeUpTo' => 2, 'FreeEvery' => 3 ], 3, 1, true ],
 		];
 	}
 
@@ -107,4 +114,17 @@ final class ComponentFreeRulesTest extends TestCase {
 
 		$this->assertSame( [ 'A:1', 'A:2', 'A:3', 'A:4', 'A:5' ], $free );
 	}
+
+	
+	public function test_compute_free_instance_keys_free_every(): void {
+        $ordered = [
+            [ 'componentId' => 'A', 'categoryId' => 'cat1', 'ruleId' => 'R1', 'isDefault' => false, 'quantity' => 2 ],
+            [ 'componentId' => 'B', 'categoryId' => 'cat1', 'ruleId' => 'R1', 'isDefault' => false, 'quantity' => 2 ],
+            [ 'componentId' => 'C', 'categoryId' => 'cat1', 'ruleId' => 'R1', 'isDefault' => false, 'quantity' => 2 ],
+        ];
+        $rules = [ 'R1' => [ 'FreeEvery' => 2 ] ];
+        $free = ComponentFreeRules::computeFreeInstanceKeys( $ordered, $rules );
+
+        $this->assertSame( [ 'A:2', 'B:2', 'C:2' ], $free );
+    }
 }

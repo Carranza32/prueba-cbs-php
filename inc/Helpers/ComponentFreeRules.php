@@ -10,9 +10,12 @@ namespace CBSNorthStar\Helpers;
 class ComponentFreeRules {
 
 	/**
-	 * @param array $rule Rule fields for this component's ruleId (FreeUpTo, DefaultComponentsAreFree,
-	 *                     FirstDefaultComponentsLevelsFree, FreeAfter). Missing/falsy keys mean disabled.
-	 */
+     * Rule precedence (short-circuit): FreeUpTo -> DefaultComponentsAreFree -> FirstDefaultComponentsLevelsFree -> FreeAfter -> FreeEvery.
+     * An instance marked free by an earlier rule returns immediately, preventing discount double-counting.
+     *
+     * @param array $rule Rule fields for this component's ruleId (FreeUpTo, DefaultComponentsAreFree,
+     *                     FirstDefaultComponentsLevelsFree, FreeAfter, FreeEvery). Missing/falsy keys mean disabled.
+     */
 	public static function isInstanceFree( bool $isDefault, array $rule, int $position, int $instanceNumber ): bool {
 		if ( ! empty( $rule['FreeUpTo'] ) && $position <= $rule['FreeUpTo'] ) {
 			return true;
@@ -29,6 +32,10 @@ class ComponentFreeRules {
 		if ( ! empty( $rule['FreeAfter'] ) && $position > $rule['FreeAfter'] ) {
 			return true;
 		}
+
+		if ( ! empty( $rule['FreeEvery'] ) && (int) $rule['FreeEvery'] > 0 && $position % (int) $rule['FreeEvery'] === 0 ) {
+            return true;
+        }
 
 		return false;
 	}
