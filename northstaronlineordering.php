@@ -36,6 +36,22 @@ if ( ! defined( 'CBS_PLUGIN_FILE' ) ) {
   define( 'CBS_PLUGIN_FILE', __FILE__ );
 }
 
+/**
+ * Declare compatibility with WooCommerce High-Performance Order Storage (HPOS).
+ *
+ * @since 1.0.8
+ */
+add_action( 'before_woocommerce_init', function() {
+    if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility(
+            'custom_order_tables',
+            CBS_PLUGIN_FILE,
+            true
+        );
+    }
+} );
+
+
 if ( file_exists( dirname(__FILE__) . '/vendor/autoload.php' ) ) {
     require_once dirname(__FILE__) . '/vendor/autoload.php' ;
 }

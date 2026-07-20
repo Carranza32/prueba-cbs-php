@@ -19,6 +19,8 @@ use CBSNorthStar\Services\LoyaltyService;
 use CBSNorthStar\Dto\GratuitiesDto;
 use CBSNorthStar\Logger\CBSLogger;
 
+use CBSNorthStar\Helpers\OrderMeta;
+
 
 class OrderProcess {
 
@@ -446,18 +448,10 @@ class OrderProcess {
         if ($response->Ok) {
             $this->checkId = $response->Data->CheckId;
             $this->checkNumber = $response->Data->CheckNumber;
-            update_post_meta(
-                $this->orderId,
-                'cbs_orderid',
-                esc_attr(htmlspecialchars($response->Data->CheckId)));
-            update_post_meta(
-                $this->orderId,
-                'cbs_siteid',
-                esc_attr(htmlspecialchars($this->siteId)));
-            update_post_meta(
-                $this->orderId,
-                'cbs_checknumber',
-                esc_attr(htmlspecialchars($response->Data->CheckNumber)));
+            
+            OrderMeta::set($this->order, 'cbs_orderid', esc_attr(htmlspecialchars($response->Data->CheckId)), false);
+            OrderMeta::set($this->order, 'cbs_siteid', esc_attr(htmlspecialchars($this->siteId)), false);
+            OrderMeta::set($this->order, 'cbs_checknumber', esc_attr(htmlspecialchars($response->Data->CheckNumber)), true);
         } else {
             $this->sendMailError(self::ERROR_SUBMIT_TYPE);
         }
@@ -483,18 +477,10 @@ class OrderProcess {
         if ($responsePayment->Ok) {
             $this->checkId = $responsePayment->Data->CheckId;
             $this->checkNumber = $responsePayment->Data->CheckNumber;
-            update_post_meta(
-                $this->orderId,
-                'cbs_orderid',
-                esc_attr(htmlspecialchars($responsePayment->Data->CheckId)));
-            update_post_meta(
-                $this->orderId,
-                'cbs_siteid',
-                esc_attr(htmlspecialchars($this->siteId)));
-            update_post_meta(
-                $this->orderId,
-                'cbs_checknumber',
-                esc_attr(htmlspecialchars($responsePayment->Data->CheckNumber)));
+            
+            OrderMeta::set($this->order, 'cbs_orderid', esc_attr(htmlspecialchars($responsePayment->Data->CheckId)), false);
+            OrderMeta::set($this->order, 'cbs_siteid', esc_attr(htmlspecialchars($this->siteId)), false);
+            OrderMeta::set($this->order, 'cbs_checknumber', esc_attr(htmlspecialchars($responsePayment->Data->CheckNumber)), true);
         } else {
             $this->sendMailError(self::ERROR_PAYMENT_TYPE);
         }
@@ -512,10 +498,7 @@ class OrderProcess {
         $url = '/checks/' . ($checkNumber ?? $this->checkNumber) . '/finalizebynumber';
         $response = (new Connection())->postData($this->siteId, $url, $this->tokenType, "{}");
         if ($response->Ok) {
-            update_post_meta(
-                $this->orderId,
-                'cbs_orderFinalized',
-                esc_attr(htmlspecialchars($response->Data->CheckId)));
+            OrderMeta::set($this->order, 'cbs_orderFinalized', esc_attr(htmlspecialchars($response->Data->CheckId)));
         }
         return $response;
     }

@@ -25,6 +25,8 @@ use CBSNorthStar\Logger\CBSLogger;
 use CBSNorthStar\Repositories\SessionEventRepository;
 use CBSNorthStar\Services\TimeSlotService;
 
+use CBSNorthStar\Helpers\OrderMeta;
+
 include(plugin_dir_path(__DIR__) . 'cbs_functions.php');
 require_once dirname(__FILE__) . '/Woapi/Connection.php';
 require_once dirname(__FILE__) . '/Woapi/Payment.php';
@@ -1778,9 +1780,9 @@ function cbsCheckOrder($orderId)
         if ($responseQR) {
             CBSLogger::orders()->info('itemsleft sent');
         }
-        update_post_meta($orderId, 'cbs_orderid', esc_attr(htmlspecialchars($_COOKIE['checkid'])));
-        update_post_meta($orderId, 'cbs_siteid', esc_attr(htmlspecialchars($_COOKIE['siteid'])));
-        update_post_meta($orderId, 'cbs_checknumber', esc_attr(htmlspecialchars($_COOKIE['checknumber'])));
+        OrderMeta::set($order, 'cbs_orderid', esc_attr(htmlspecialchars($_COOKIE['checkid'])), false);
+        OrderMeta::set($order, 'cbs_siteid', esc_attr(htmlspecialchars($_COOKIE['siteid'])), false);
+        OrderMeta::set($order, 'cbs_checknumber', esc_attr(htmlspecialchars($_COOKIE['checknumber'])), true);
     }
     } finally {
         cbsReleaseOrderSubmitLock((int) $orderId);

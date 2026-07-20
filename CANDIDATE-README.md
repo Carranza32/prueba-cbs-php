@@ -9,3 +9,11 @@ Implemented the `FreeEvery` promotional rule within `ComponentFreeRules::isInsta
   1. UI reactivity (cart totals updating dynamically when crossing the $N$th threshold).
   2. Visual state (rendering "Free" badges on the correct DOM elements).
   3. Array mutation handling (re-evaluating modulo positions correctly when an earlier item is removed from the cart).
+
+
+
+  ## Task 2 — HPOS-Compatible Order Meta & Audit
+
+Introduced the `CBSNorthStar\Helpers\OrderMeta` wrapper class to centralize and manage all read/write operations for internal CBS order metadata (`cbs_orderid`, `cbs_siteid`, `cbs_checknumber`, and `cbs_orderFinalized`). This abstraction enforces schema whitelist validation, supports both `WC_Order` objects and raw numeric order IDs, and leverages the native WooCommerce CRUD API (`$order->get_meta()` and `$order->update_meta_data()`). Legacy direct calls to `update_post_meta()` across `inc/Woapi/OrderProcess.php` and `inc/woocommerce_hooks.php` were successfully refactored to utilize this layer, optimizing database access by deferring persistent writes until all keys are staged in memory. Furthermore, official High-Performance Order Storage (HPOS) compatibility was declared via `FeaturesUtil::declare_compatibility()` within the `before_woocommerce_init` action hook.
+
+* **Production HPOS Readiness Audit:** While working through the refactoring of `OrderProcess.php`, I identified significant remaining legacy dependencies on direct post metadata functions outside the core CBS check IDs. Specifically, the `getDeliveryDate()` method relies heavily on direct `get_post_meta()` calls to retrieve order delivery timestamps (`_orddd_lite_timeslot_timestamp`, `_orddd_timeslot_timestamp`) as well as custom OLO navigation time slots (`_olo_time_slot_time`, `_olo_time_slot_business_date`). Before enabling HPOS on a production store, a codebase-wide audit must be performed to migrate all remaining `get_post_meta()` and `update_post_meta()` references to the WC CRUD API. Additionally, any direct `$wpdb` SQL queries joining `wp_posts` with `wp_postmeta` for order reporting, along with legacy `get_posts()` arguments querying the `shop_order` post type, must be audited and updated to use `wc_get_orders()` or the `wc_orders` custom table schema.
